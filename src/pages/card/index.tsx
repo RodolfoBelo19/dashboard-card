@@ -1,14 +1,14 @@
 import {Field, Form, Formik} from "formik";
-import {ICard} from "@/pages/card/interfaces/ICard";
+import {ICard} from "@/pages/interfaces/ICard";
 import api from "@/api";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
 const initialValuesSchema = {
   name: "",
-  limit: "",
-  available: "",
-  used: "",
+  limit: 0,
+  available: 0,
+  used: 0,
   type: "mastercard",
 }
 
@@ -19,10 +19,10 @@ export default function Card() {
   const {id} = query
 
   const handleSubmit = async (values: ICard) => {
-    console.log(values)
     try {
       const result = await api.post('/card', values)
       console.log(result)
+      await push('/')
     } catch (e) {
       console.log(e)
     }
@@ -34,7 +34,6 @@ export default function Card() {
         try {
           const result = await api.get(`/card/${id}`)
           setInitialValues(result.data)
-          console.log(result.data)
         } catch (e) {
           console.log(e)
         }
@@ -46,7 +45,7 @@ export default function Card() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="mt-5">Register Credit Limit</h1>
+      <h1 className="mt-5">{!id ? 'Register' : 'Edit'} Credit Limit</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit} enableReinitialize={true}
