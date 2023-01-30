@@ -1,9 +1,10 @@
 import {FormatValue} from "./FormatValue";
 import {ICard} from "../pages/interfaces/ICard";
 import React from "react";
-import Link from "next/link";
+import {PlusButton} from "@/components/Button";
 
 export const Card = ({data}: any) => {
+
   const cardType = (type: string) => {
     if (type == 'mastercard') {
       return (
@@ -53,9 +54,9 @@ export const Card = ({data}: any) => {
         data.map((card: ICard) => {
           return (
             <div key={card.name}>
-              <Link className="bg-zinc-800 flex m-2 items-center rounded-2xl p-5"
-                    style={{backgroundImage: `url(/images/${card.name}.png)`}}
-                    href={`/card/${card._id}`}>
+              <div className="bg-zinc-800 relative flex m-2 items-center rounded-2xl p-5"
+                   style={{backgroundImage: `url(/images/${card.name}.png)`}}
+              >
                 <div className="w-full">
                   <p className="flex">
                     <strong className="mx-2">name:</strong>
@@ -78,7 +79,9 @@ export const Card = ({data}: any) => {
                   {cardType(card?.type)}
                   {/*{cardTest(card?.type)}*/}
                 </div>
-              </Link>
+                <PlusButton data={card}/>
+                {/*<EllipsisVerticalIcon className="absolute right-2 top-3" height={20} />*/}
+              </div>
             </div>
           );
         })

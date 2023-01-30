@@ -3,7 +3,7 @@ import {Card} from "../components/Card";
 import api from "../api/index";
 import React, {useEffect, useState} from "react";
 import {ICard} from "./interfaces/ICard";
-import {Button, PlusButton} from "@/components/Button";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const [data, setData] = useState<ICard[]>([])
@@ -22,14 +22,10 @@ export default function Home() {
   }, [])
 
   return (
-    <>
+    <div className="pt-20">
+      <Navbar/>
       <Card data={data}/>
-      <Link className="flex" href={'/card'}>
-        <PlusButton  />
-        <Button>
-          Register
-        </Button>
-      </Link>
-    </>
+      <Link className="flex" href={'/card'} />
+    </div>
   )
 }

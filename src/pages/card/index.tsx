@@ -3,6 +3,7 @@ import {ICard} from "@/pages/interfaces/ICard";
 import api from "@/api";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
+import {Button} from "@/components/Button";
 
 const initialValuesSchema = {
   name: "",
@@ -19,12 +20,23 @@ export default function Card() {
   const {id} = query
 
   const handleSubmit = async (values: ICard) => {
-    try {
-      const result = await api.post('/card', values)
-      console.log(result)
-      await push('/')
-    } catch (e) {
-      console.log(e)
+    if (values._id) {
+      try {
+        const result = await api.patch(`/card/${values._id}`, values)
+        console.log(result)
+        await push('/')
+      } catch (e) {
+        console.log(e)
+      }
+      return
+    } else {
+      try {
+        const result = await api.post('/card', values)
+        console.log(result)
+        await push('/')
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 
@@ -44,7 +56,7 @@ export default function Card() {
   }, [id])
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col text-gray-300 justify-center items-center">
       <h1 className="mt-5">{!id ? 'Register' : 'Edit'} Credit Limit</h1>
       <Formik
         initialValues={initialValues}
@@ -53,25 +65,25 @@ export default function Card() {
         {({values, handleChange, handleSubmit}) => (
           <Form className="flex p-5 w-full flex-col">
             <label htmlFor="name">Name</label>
-            <Field className="border-2 p-1 rounded-md" name="name" type="text"/>
+            <Field className="p-1 rounded-md bg-zinc-500" name="name" type="text"/>
 
             <label className="mt-5" htmlFor="limit">Limit</label>
-            <Field placeholder={"R$"} className="border-2 p-1 rounded-md" name="limit" type="text"/>
+            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="limit" type="text"/>
 
             <label className="mt-5" htmlFor="available">Available</label>
-            <Field placeholder={"R$"} className="border-2 p-1 rounded-md" name="available" type="text"/>
+            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="available" type="text"/>
 
             <label className="mt-5" htmlFor="used">Used</label>
-            <Field placeholder={"R$"} className="border-2 p-1 rounded-md" name="used" type="text"/>
+            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="used" type="text"/>
 
             <label className="mt-5" htmlFor="type">Type</label>
-            <Field placeholder={"R$"} className="border-2 p-1 rounded-md" name="type" type="text"
+            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="type" type="text"
                    as="select">
               <option value="mastercard">MasterCard</option>
               <option value="visa">Visa</option>
             </Field>
 
-            <button className="mt-5" type="submit">Submit</button>
+            <Button className="mt-5" type="submit">{values._id ? 'Edit' : 'Create'}</Button>
           </Form>
         )}
       </Formik>
