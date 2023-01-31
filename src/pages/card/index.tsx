@@ -5,11 +5,12 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {Button} from "@/components/Button";
 
-const initialValuesSchema = {
+const initialValuesSchema: ICard = {
   name: "",
   limit: 0,
   used: 0,
   type: "mastercard",
+  userId: ""
 }
 
 export default function Card() {

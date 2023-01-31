@@ -33,7 +33,7 @@ export const PlusButton = ({children, className, data}: any) => {
   }
 
   return (
-    <div className="absolute top-2 right-1">
+    <div className="flex justify-end p-2">
       <Menu as="div" className="relative text-left">
         <div>
           <Menu.Button className="text-gray-300 text-sm flex font-medium">

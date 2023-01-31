@@ -4,4 +4,5 @@ export interface ICard {
   limit: number,
   used: number,
   type: string,
+  userId?: string,
 }

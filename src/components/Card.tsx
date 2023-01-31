@@ -54,10 +54,10 @@ export const Card = ({data}: any) => {
         data.map((card: ICard) => {
           return (
             <div key={card.name}>
-              <div className="bg-zinc-800 relative flex m-2 items-center rounded-2xl p-5"
+              <div className="bg-zinc-800 flex m-2 rounded-2xl"
                    style={{backgroundImage: `url(/images/${card.name}.png)`}}
               >
-                <div className="w-full">
+                <div className="m-4 w-full">
                   <p className="flex">
                     <strong className="mx-2">name:</strong>
                     {card?.name}
@@ -75,11 +75,13 @@ export const Card = ({data}: any) => {
                     <FormatValue value={card?.used}/>
                   </p>
                 </div>
-                <div>
-                  {cardType(card?.type)}
-                  {/*{cardTest(card?.type)}*/}
+                <div className="flex flex-col">
+                  <PlusButton data={card}/>
+                  <div className="flex m-2 items-center">
+                    {cardType(card?.type)}
+                    {/*{cardTest(card?.type)}*/}
+                  </div>
                 </div>
-                <PlusButton data={card}/>
                 {/*<EllipsisVerticalIcon className="absolute right-2 top-3" height={20} />*/}
               </div>
             </div>
