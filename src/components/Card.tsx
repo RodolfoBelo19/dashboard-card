@@ -68,7 +68,7 @@ export const Card = ({data}: any) => {
                   </p>
                   <p className="flex">
                     <strong className="mx-2">available:</strong>
-                    <FormatValue value={card?.available}/>
+                    <FormatValue value={card?.limit - card?.used}/>
                   </p>
                   <p className="flex">
                     <strong className="mx-2">used:</strong>

@@ -8,7 +8,6 @@ import {Button} from "@/components/Button";
 const initialValuesSchema = {
   name: "",
   limit: 0,
-  available: 0,
   used: 0,
   type: "mastercard",
 }
@@ -69,9 +68,6 @@ export default function Card() {
 
             <label className="mt-5" htmlFor="limit">Limit</label>
             <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="limit" type="text"/>
-
-            <label className="mt-5" htmlFor="available">Available</label>
-            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="available" type="text"/>
 
             <label className="mt-5" htmlFor="used">Used</label>
             <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="used" type="text"/>
