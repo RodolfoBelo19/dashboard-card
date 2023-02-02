@@ -1,7 +1,13 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3005",
+  baseURL: "https://2dad-152-67-36-52.sa.ngrok.io",
+  headers: {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+  }
 });
 
 export default api;
