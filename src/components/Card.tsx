@@ -82,7 +82,6 @@ export const Card = ({data}: any) => {
                     {/*{cardTest(card?.type)}*/}
                   </div>
                 </div>
-                {/*<EllipsisVerticalIcon className="absolute right-2 top-3" height={20} />*/}
               </div>
             </div>
           );

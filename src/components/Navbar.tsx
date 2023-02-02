@@ -5,6 +5,7 @@ import Link from "next/link";
 
 const navigation = [
   { name: 'Register Card', href: '/card', current: true },
+  { name: 'Register User', href: '/registerUser', current: true },
 ]
 
 function classNames(...classes: any) {

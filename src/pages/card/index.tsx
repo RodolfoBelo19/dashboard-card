@@ -10,7 +10,6 @@ const initialValuesSchema: ICard = {
   limit: 0,
   used: 0,
   type: "mastercard",
-  userId: ""
 }
 
 export default function Card() {
@@ -20,9 +19,16 @@ export default function Card() {
   const {id} = query
 
   const handleSubmit = async (values: ICard) => {
+    const setValues = {
+      name: values.name,
+      limit: values.limit,
+      used: values.used,
+      type: values.type,
+      idUser: "63db178d651d6d93c879694b"
+    }
     if (values._id) {
       try {
-        const result = await api.patch(`/card/${values._id}`, values)
+        const result = await api.patch(`/card/${values._id}`, setValues)
         console.log(result)
         await push('/')
       } catch (e) {
@@ -31,7 +37,7 @@ export default function Card() {
       return
     } else {
       try {
-        const result = await api.post('/card', values)
+        const result = await api.post('/card', setValues)
         console.log(result)
         await push('/')
       } catch (e) {
