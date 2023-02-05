@@ -1,12 +1,11 @@
 import axios from "axios";
+import * as process from "process";
 
 const api = axios.create({
-  baseURL: "https://2dad-152-67-36-52.sa.ngrok.io",
+  baseURL: process.env.NEXT_PUBLIC_API,
   headers: {
-    "origin": "*",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
+    "Content-Type": "application/json",
+    "allow-origin": "*",
   }
 });
 

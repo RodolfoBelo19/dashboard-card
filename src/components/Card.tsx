@@ -25,33 +25,11 @@ export const Card = ({data}: any) => {
     }
   }
 
-  /* test object literals ****************************************
-    const cardType = (cardType: ICardType) => {
-      const card = {
-        mastercard: (
-          <img
-            src={"mastercard.png"}
-            alt="mastercard"
-            className="w-20"
-          />
-        ),
-        visa: (
-          <img
-            src={"visa.png"}
-            alt="visa"
-            className="w-20"
-          />
-        )
-      }
-      return card[cardType]
-    }
-  *****/
-
   return (
     <div
-      className="flex sm:flex-row flex-col w-full p-1 text-white">
+      className="flex sm:flex-row flex-col items-center justify-center p-1 text-white">
       {
-        data.map((card: ICard) => {
+        data?.map((card: ICard) => {
           return (
             <div key={card.name}>
               <div className="bg-zinc-800 flex m-2 rounded-2xl"
@@ -79,7 +57,6 @@ export const Card = ({data}: any) => {
                   <PlusButton data={card}/>
                   <div className="flex m-2 items-center">
                     {cardType(card?.type)}
-                    {/*{cardTest(card?.type)}*/}
                   </div>
                 </div>
               </div>
