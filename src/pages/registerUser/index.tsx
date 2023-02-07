@@ -1,11 +1,11 @@
 import {Field, Form, Formik} from "formik";
-import {User} from "@/pages/interfaces/User";
+import {IUser} from "@/pages/interfaces/IUser";
 import {useState} from "react";
 import {Button} from "@/components/Button";
 import {useRouter} from "next/router";
 import api from "@/api";
 
-const initialValuesSchema: User = {
+const initialValuesSchema: IUser = {
   name: "",
   email: "",
   password: "",
@@ -16,7 +16,7 @@ export default function RegisterUser() {
   const {query, push} = useRouter()
   const {id} = query
 
-  const handleSubmit = async (values: User) => {
+  const handleSubmit = async (values: IUser) => {
     try {
       await api.post('/user', values)
       await push('/')
