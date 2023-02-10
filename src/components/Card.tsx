@@ -40,15 +40,15 @@ export const Card = ({data}: any) => {
                     <strong className="mx-2">name:</strong>
                     {card?.name}
                   </p>
-                  <p className="flex">
+                  <p className={`flex ${card?.limit > 0 ? 'text-blue-400' : 'text-gray-400'} `}>
                     <strong className="mx-2">total limit:</strong>
                     <FormatValue value={card?.limit}/>
                   </p>
-                  <p className="flex">
+                  <p className={`flex ${card?.limit !== card?.used ? 'text-green-400' : 'text-red-400'} `}>
                     <strong className="mx-2">available:</strong>
                     <FormatValue value={card?.limit - card?.used}/>
                   </p>
-                  <p className="flex">
+                  <p className={`flex ${card?.limit !== card?.used ? 'text-yellow-400' : 'text-gray-400'} `}>
                     <strong className="mx-2">used:</strong>
                     <FormatValue value={card?.used}/>
                   </p>

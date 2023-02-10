@@ -9,7 +9,7 @@ type FormatValueProps = {
 export const FormatValue = ({value}: FormatValueProps) => {
 
   return (
-    <div className={value <= 0 ? 'text-red-500' : ''}>
+    <div>
       {formatter.format(value)}
     </div>
   )

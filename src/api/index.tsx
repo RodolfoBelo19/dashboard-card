@@ -3,9 +3,9 @@ import * as process from "process";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API,
+  withCredentials: true,
   headers: {
-    "Content-Type": "application/json",
-    "allow-origin": "*",
+   "ngrok-skip-browser-warning": "69420",
   }
 });
 
