@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, BanknotesIcon } from '@heroicons/react/24/outline'
 import Link from "next/link";
+import Image from 'next/image';
 
 const navigation = [
   { name: 'Register Card', href: '/card', current: true },
@@ -66,10 +67,12 @@ export default function Navbar() {
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
-                      <img
+                      <Image
                         className="h-8 w-8 rounded-full"
-                        src="https://avatars.githubusercontent.com/u/64740047?v=4"
-                        alt=""
+                        src="avatar.jpeg"
+                        alt="avatar"
+                        width={32}
+                        height={32}
                       />
                     </Menu.Button>
                   </div>

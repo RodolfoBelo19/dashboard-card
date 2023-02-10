@@ -1,5 +1,5 @@
 import {Field, Form, Formik} from "formik";
-import {IUser} from "@/pages/interfaces/IUser";
+import {IUser} from "@/interfaces/IUser";
 import {useState} from "react";
 import {Button} from "@/components/Button";
 import {useRouter} from "next/router";

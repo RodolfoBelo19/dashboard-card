@@ -1,14 +1,17 @@
-import {FormatValue} from "./FormatValue";
-import {ICard} from "../pages/interfaces/ICard";
+import { FormatValue } from "./FormatValue";
+import { ICard } from "../interfaces/ICard";
 import React from "react";
-import {PlusButton} from "@/components/Button";
+import { PlusButton } from "@/components/Button";
+import Image from "next/image";
 
-export const Card = ({data}: any) => {
+export const Card = ({ data }: any) => {
 
   const cardType = (type: string) => {
     if (type == 'mastercard') {
       return (
-        <img
+        <Image
+          height={50}
+          width={50}
           src={"mastercard.png"}
           alt="mastercard"
           className="w-20"
@@ -16,7 +19,9 @@ export const Card = ({data}: any) => {
       )
     } else {
       return (
-        <img
+        <Image
+          height={50}
+          width={50}
           src={"visa.png"}
           alt="visa"
           className="w-20"
@@ -33,7 +38,7 @@ export const Card = ({data}: any) => {
           return (
             <div key={card.name}>
               <div className="bg-zinc-800 flex m-2 rounded-2xl"
-                   style={{backgroundImage: `url(/images/${card.name}.png)`}}
+                style={{ backgroundImage: `url(/images/${card.name}.png)` }}
               >
                 <div className="m-4 w-full">
                   <p className="flex">
@@ -42,19 +47,19 @@ export const Card = ({data}: any) => {
                   </p>
                   <p className={`flex ${card?.limit > 0 ? 'text-blue-400' : 'text-gray-400'} `}>
                     <strong className="mx-2">total limit:</strong>
-                    <FormatValue value={card?.limit}/>
+                    <FormatValue value={card?.limit} />
                   </p>
                   <p className={`flex ${card?.limit !== card?.used ? 'text-green-400' : 'text-red-400'} `}>
                     <strong className="mx-2">available:</strong>
-                    <FormatValue value={card?.limit - card?.used}/>
+                    <FormatValue value={card?.limit - card?.used} />
                   </p>
                   <p className={`flex ${card?.limit !== card?.used ? 'text-yellow-400' : 'text-gray-400'} `}>
                     <strong className="mx-2">used:</strong>
-                    <FormatValue value={card?.used}/>
+                    <FormatValue value={card?.used} />
                   </p>
                 </div>
                 <div className="flex flex-col">
-                  <PlusButton data={card}/>
+                  <PlusButton data={card} />
                   <div className="flex m-2 items-center">
                     {cardType(card?.type)}
                   </div>

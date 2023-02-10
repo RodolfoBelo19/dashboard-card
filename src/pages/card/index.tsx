@@ -1,5 +1,5 @@
 import {Field, Form, Formik} from "formik";
-import {ICard} from "@/pages/interfaces/ICard";
+import {ICard} from "@/interfaces/ICard";
 import api from "@/api";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";

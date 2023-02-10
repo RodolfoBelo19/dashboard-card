@@ -1,6 +1,6 @@
 import {Card} from "@/components/Card";
 import React, {useEffect, useState} from "react";
-import {ICard} from "@/pages/interfaces/ICard";
+import {ICard} from "@/interfaces/ICard";
 import api from "@/api";
 
 export const ListCards = () => {
