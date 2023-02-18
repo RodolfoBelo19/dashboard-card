@@ -28,7 +28,13 @@ export default function Card() {
     }
     if (values._id) {
       try {
-        const result = await api.patch(`/card/${values._id}`, setValues)
+        const result = await api.patch(`/card/${values._id}`, {
+          setValues,
+          headers: {
+            'Content-Type': 'application/json',
+            'methods:' : 'PATCH'
+          }
+        })
         console.log(result)
         await push('/')
       } catch (e) {

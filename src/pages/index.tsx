@@ -5,9 +5,9 @@ import {Tab} from '@headlessui/react'
 import {ListCards} from "@/components/listCards";
 
 const redirect = [
-  {name: "Cards", icon: <CreditCardIcon className="sm:h-24 h-14"/>},
-  {name: "Expenses", icon: <ArrowTrendingDownIcon className="sm:h-24 h-14"/>},
-  {name: "Revenues", icon: <ArrowTrendingUpIcon className="sm:h-24 h-14"/>}
+  {id: 1, name: "Cards", icon: <CreditCardIcon className="sm:h-24 h-14"/>},
+  {id: 2, name: "Expenses", icon: <ArrowTrendingDownIcon className="sm:h-24 h-14"/>},
+  {id: 3, name: "Revenues", icon: <ArrowTrendingUpIcon className="sm:h-24 h-14"/>}
 ]
 
 export default function Home() {
@@ -18,10 +18,10 @@ export default function Home() {
       <Tab.Group>
         <div className="flex-wrap flex items-center justify-center">
           <Tab.List className="flex p-1 space-x-1 rounded-2xl">
-            {redirect.map((item, key) => {
+            {redirect.map((item) => {
               return (<>
                 <Tab
-                  key={key}
+                  key={item.id}
                   className={({selected}) => `${selected ? 'text-zinc-300'
                     : 'text-zinc-700'
                   } 

@@ -12,7 +12,7 @@ export const Card = ({ data }: any) => {
         <Image
           height={50}
           width={50}
-          src={"mastercard.png"}
+          src={"/mastercard.png"}
           alt="mastercard"
           className="w-20"
         />
@@ -22,7 +22,7 @@ export const Card = ({ data }: any) => {
         <Image
           height={50}
           width={50}
-          src={"visa.png"}
+          src={"/visa.png"}
           alt="visa"
           className="w-20"
         />
