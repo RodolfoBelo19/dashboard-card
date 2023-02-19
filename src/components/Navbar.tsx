@@ -1,8 +1,10 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, BanknotesIcon } from '@heroicons/react/24/outline'
+
 import Link from "next/link";
 import Image from 'next/image';
+import { useRouter } from 'next/router'
 
 const navigation = [
   { name: 'Register Card', href: '/card', current: true },
@@ -14,6 +16,13 @@ function classNames(...classes: any) {
 }
 
 export default function Navbar() {
+  const router = useRouter()
+
+  const onToggleLanguageClick = (newLocale: string) => {
+    const { pathname, asPath, query } = router
+    router.push({ pathname, query }, asPath, { locale: newLocale })
+  }
+
   return (
     <Disclosure as="nav" className="fixed w-full -mt-20 transition bg-zinc-800 border-b-zinc-900 border-b-2">
       {({ open }) => (
@@ -119,6 +128,15 @@ export default function Navbar() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+
+                <div className='sm:flex hidden gap-3 items-center justify-center p-5'>
+                  <button onClick={() => onToggleLanguageClick('pt')}>
+                    <Image src="/br.webp" alt="brazil" width={20} height={20} />
+                  </button>
+                  <button onClick={() => onToggleLanguageClick('en')}>
+                    <Image src="/us.webp" alt="usa" width={20} height={20} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -139,6 +157,16 @@ export default function Navbar() {
                   {item.name}
                 </Disclosure.Button>
               ))}
+              {/* todo translation */}
+              <div className='gap-4 flex items-center justify-center p-5'>
+                <button onClick={() => onToggleLanguageClick('pt')}>
+                  <Image src="/br.webp" alt="brazil" width={30} height={30} />
+                </button>
+                <button onClick={() => onToggleLanguageClick('en')}>
+                  <Image src="/us.webp" alt="usa" width={30} height={30} />
+                </button>
+              </div>
+              {/* todo translation */}
             </div>
           </Disclosure.Panel>
         </>
