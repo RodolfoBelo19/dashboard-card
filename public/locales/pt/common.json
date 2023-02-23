@@ -1,3 +1,14 @@
 {
-  "h1": "Bem-vindo ao meu site"
+  "h1": "Bem-vindo ao meu site",
+
+  "register_card": "Registrar cartão",
+  "register_user": "Registrar usuário",
+
+  "cards": "Cartões",
+  "expenses": "Saídas",
+  "revenues": "Entradas",
+
+  "your_profile": "Seu Perfil",
+  "settings": "Configurações",
+  "sign_out": "Sair"
 }

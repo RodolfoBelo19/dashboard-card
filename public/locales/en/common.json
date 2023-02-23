@@ -1,3 +1,14 @@
 {
-  "h1": "Welcome to your personal finance manager"
+  "h1": "Welcome to your personal finance manager",
+
+  "register_card": "Register card",
+  "register_user": "Register user",
+
+  "cards": "Cards",
+  "expenses": "Expenses",
+  "revenues": "Revenues",
+
+  "your_profile": "Your Profile",
+  "settings": "Settings",
+  "sign_out": "Sign out"
 }

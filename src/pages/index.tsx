@@ -8,16 +8,16 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { useTranslation, Trans } from 'next-i18next'
 
-const redirect = [
-  { id: 1, name: "Cards", icon: <CreditCardIcon className="sm:h-24 h-14" /> },
-  { id: 2, name: "Expenses", icon: <ArrowTrendingDownIcon className="sm:h-24 h-14" /> },
-  { id: 3, name: "Revenues", icon: <ArrowTrendingUpIcon className="sm:h-24 h-14" /> }
-]
-
 export default function Home(
   _props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
   const { t } = useTranslation('common')
+
+  const redirect = [
+    { id: 1, name: t('cards'), icon: <CreditCardIcon className="sm:h-24 h-14" /> },
+    { id: 2, name: t('expenses'), icon: <ArrowTrendingDownIcon className="sm:h-24 h-14" /> },
+    { id: 3, name: t('revenues'), icon: <ArrowTrendingUpIcon className="sm:h-24 h-14" /> }
+  ]
 
   return (
     <div className="pt-20">

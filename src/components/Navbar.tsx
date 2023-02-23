@@ -6,10 +6,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import { useRouter } from 'next/router'
 
-const navigation = [
-  { name: 'Register Card', href: '/card', current: true },
-  { name: 'Register User', href: '/registerUser', current: true },
-]
+import { useTranslation } from 'next-i18next'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -22,6 +19,13 @@ export default function Navbar() {
     const { pathname, asPath, query } = router
     router.push({ pathname, query }, asPath, { locale: newLocale })
   }
+
+  const { t } = useTranslation('common')
+
+  const navigation = [
+    { name: t('register_card'), href: '/card', current: true },
+    { name: t('register_user'), href: '/registerUser', current: true },
+  ]
 
   return (
     <Disclosure as="nav" className="fixed w-full -mt-20 transition bg-zinc-800 border-b-zinc-900 border-b-2">
@@ -101,7 +105,7 @@ export default function Navbar() {
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Your Profile
+                            {t('your_profile')}
                           </a>
                         )}
                       </Menu.Item>
@@ -111,7 +115,7 @@ export default function Navbar() {
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Settings
+                            {t('settings')}
                           </a>
                         )}
                       </Menu.Item>
@@ -121,7 +125,7 @@ export default function Navbar() {
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Sign out
+                            {t('sign_out')}
                           </a>
                         )}
                       </Menu.Item>
