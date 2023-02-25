@@ -2,22 +2,28 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { IAuthUserFirebase } from "../interfaces/IAuthUserFirebase";
 
-import {
-  auth,
-  providerGoogle
-} from "../infra/firebase";
+import { auth, providerGoogle } from "../infra/firebase";
 
 interface AuthUserProps {
   user: IAuthUserFirebase | any;
   setUser: (user: IAuthUserFirebase | any) => void;
+  sign_in?: string | null;
+  sign_out?: string | null;
+  classNameProps?: string;
 }
 
-export const AuthUser = ({user, setUser} : AuthUserProps, {sign_out}: any) => {
+export const AuthUser = ({
+  user,
+  setUser,
+  sign_in,
+  sign_out,
+  classNameProps,
+}: AuthUserProps) => {
   const signIn = async () => {
     try {
       const result = await signInWithPopup(auth, providerGoogle);
@@ -41,9 +47,9 @@ export const AuthUser = ({user, setUser} : AuthUserProps, {sign_out}: any) => {
   });
 
   return (
-    <>
-      {!user && <button onClick={signIn}>Sign In</button>}
-      {user && <button onClick={signOutUser}>{sign_out}</button>}
-    </>
+    <div className={classNameProps}>
+      {!user && <button className="w-full text-left" onClick={signIn}>{sign_in}</button>}
+      {user && <button className="w-full text-left" onClick={signOutUser}>{sign_out}</button>}
+    </div>
   );
 };

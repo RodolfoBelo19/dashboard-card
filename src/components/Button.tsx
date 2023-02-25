@@ -1,12 +1,16 @@
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { EllipsisVerticalIcon, PencilIcon, TrashIcon } from '@heroicons/react/20/solid'
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import {
+  EllipsisVerticalIcon,
+  PencilIcon,
+  TrashIcon,
+} from "@heroicons/react/20/solid";
 import Link from "next/link";
 import api from "@/api";
 import { useRouter } from "next/router";
 
 function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export const Button = ({ children, className }: any) => {
@@ -16,21 +20,21 @@ export const Button = ({ children, className }: any) => {
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
 export const PlusButton = ({ children, className, data }: any) => {
-  const { push } = useRouter()
+  const { push } = useRouter();
 
   const removeCard = async (id: string) => {
     try {
-      const result = await api.delete(`/card/${id}`)
-      console.log(result)
-      await push('/')
+      const result = await api.delete(`/card/${id}`);
+      console.log(result);
+      await push("/");
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
   return (
     <div className="flex justify-end p-2">
@@ -50,16 +54,15 @@ export const PlusButton = ({ children, className, data }: any) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items
-            className="absolute w-36 right-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute w-36 right-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1">
               <Menu.Item>
                 {({ active }) => (
                   <Link
                     href={`/card/${data._id}`}
                     className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm'
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm"
                     )}
                   >
                     <div className="flex justify-between gap-2">
@@ -74,8 +77,8 @@ export const PlusButton = ({ children, className, data }: any) => {
                   <button
                     onClick={() => removeCard(data._id)}
                     className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm'
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm"
                     )}
                   >
                     <div className="flex justify-between gap-2">
@@ -90,5 +93,5 @@ export const PlusButton = ({ children, className, data }: any) => {
         </Transition>
       </Menu>
     </div>
-  )
-}
+  );
+};

@@ -1,2 +1,2 @@
-import Card from './index'
-export default Card
+import Card from "./index";
+export default Card;

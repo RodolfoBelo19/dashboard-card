@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
-import * as Firebase from '../../infra/firebase';
+import { useState, useEffect } from "react";
+import * as Firebase from "../../infra/firebase";
 
 const formatAuthUser = (user: any) => ({
   uid: user.uid,
-  email: user.email
+  email: user.email,
 });
 
 export default function useFirebaseAuth() {
@@ -12,12 +12,12 @@ export default function useFirebaseAuth() {
 
   const authStateChanged = async (authState: any) => {
     if (!authState) {
-      setAuthUser(null)
-      setLoading(false)
+      setAuthUser(null);
+      setLoading(false);
       return;
     }
 
-    setLoading(true)
+    setLoading(true);
     var formattedUser = formatAuthUser(authState);
     setAuthUser(formattedUser);
     setLoading(false);
@@ -31,6 +31,6 @@ export default function useFirebaseAuth() {
 
   return {
     authUser,
-    loading
+    loading,
   };
 }

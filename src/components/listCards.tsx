@@ -4,22 +4,20 @@ import { ICard } from "@/interfaces/ICard";
 import api from "@/api";
 
 export const ListCards = () => {
-  const [data, setData] = useState<ICard[]>([])
+  const [data, setData] = useState<ICard[]>([]);
 
   const fetchData = async () => {
     try {
-      const response = await api.get('card')
-      setData(response.data)
+      const response = await api.get("card");
+      setData(response.data);
     } catch (error) {
-      console.log(error, 'error')
+      console.log(error, "error");
     }
-  }
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
-  return (
-    <Card data={data} />
-  );
-}
+  return <Card data={data} />;
+};

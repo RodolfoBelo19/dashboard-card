@@ -8,8 +8,8 @@ const Person = [
     id: 2,
     name: "Doe",
     age: 18,
-  }
-]
+  },
+];
 
 export default function HomePage() {
   return (
