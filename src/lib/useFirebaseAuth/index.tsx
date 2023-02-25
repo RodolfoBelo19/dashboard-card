@@ -19,14 +19,14 @@ export default function useFirebaseAuth() {
 
     setLoading(true);
     var formattedUser = formatAuthUser(authState);
-    setAuthUser(formattedUser);
+    // setAuthUser(formattedUser);
     setLoading(false);
   };
 
   // listen for Firebase state change
   useEffect(() => {
-    const unsubscribe = Firebase.auth().onAuthStateChanged(authStateChanged);
-    return () => unsubscribe();
+    // const unsubscribe = Firebase.auth().onAuthStateChanged(authStateChanged);
+    // return () => unsubscribe();
   }, []);
 
   return {
