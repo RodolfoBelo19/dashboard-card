@@ -6,7 +6,7 @@ const formatter = new Intl.NumberFormat('pt-BR', {
 type FormatValueProps = {
   value: number;
 }
-export const FormatValue = ({value}: FormatValueProps) => {
+export const FormatValue = ({ value }: FormatValueProps) => {
 
   return (
     <div>

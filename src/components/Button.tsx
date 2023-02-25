@@ -1,15 +1,15 @@
-import {Fragment} from 'react'
-import {Menu, Transition} from '@headlessui/react'
-import {EllipsisVerticalIcon, PencilIcon, TrashIcon} from '@heroicons/react/20/solid'
+import { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+import { EllipsisVerticalIcon, PencilIcon, TrashIcon } from '@heroicons/react/20/solid'
 import Link from "next/link";
 import api from "@/api";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const Button = ({children, className}: any) => {
+export const Button = ({ children, className }: any) => {
   return (
     <button
       className={`bg-zinc-800 hover:bg-zinc-600 transition duration-300 text-white m-4 p-2 rounded-md ${className}`}
@@ -19,8 +19,8 @@ export const Button = ({children, className}: any) => {
   )
 }
 
-export const PlusButton = ({children, className, data}: any) => {
-  const {push} = useRouter()
+export const PlusButton = ({ children, className, data }: any) => {
+  const { push } = useRouter()
 
   const removeCard = async (id: string) => {
     try {
@@ -37,7 +37,7 @@ export const PlusButton = ({children, className, data}: any) => {
       <Menu as="div" className="relative text-left">
         <div>
           <Menu.Button className="text-gray-300 text-sm flex font-medium">
-            <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true"/>
+            <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
           </Menu.Button>
         </div>
 
@@ -54,7 +54,7 @@ export const PlusButton = ({children, className, data}: any) => {
             className="absolute w-36 right-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1">
               <Menu.Item>
-                {({active}) => (
+                {({ active }) => (
                   <Link
                     href={`/card/${data._id}`}
                     className={classNames(
@@ -64,13 +64,13 @@ export const PlusButton = ({children, className, data}: any) => {
                   >
                     <div className="flex justify-between gap-2">
                       <span>Edit Card</span>
-                      <PencilIcon height={20}/>
+                      <PencilIcon height={20} />
                     </div>
                   </Link>
                 )}
               </Menu.Item>
               <Menu.Item>
-                {({active}) => (
+                {({ active }) => (
                   <button
                     onClick={() => removeCard(data._id)}
                     className={classNames(
@@ -80,7 +80,7 @@ export const PlusButton = ({children, className, data}: any) => {
                   >
                     <div className="flex justify-between gap-2">
                       <span>Delete Card</span>
-                      <TrashIcon height={20}/>
+                      <TrashIcon height={20} />
                     </div>
                   </button>
                 )}

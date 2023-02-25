@@ -10,5 +10,10 @@
 
   "your_profile": "Seu Perfil",
   "settings": "Configurações",
-  "sign_out": "Sair"
+  "sign_out": "Sair",
+
+  "name": "Nome",
+  "total_limit": "Total de limite",
+  "available_limit": "Limite disponível",
+  "used": "Usado"
 }

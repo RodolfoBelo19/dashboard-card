@@ -1,9 +1,9 @@
-import {Field, Form, Formik} from "formik";
-import {ICard} from "@/interfaces/ICard";
+import { Field, Form, Formik } from "formik";
+import { ICard } from "@/interfaces/ICard";
 import api from "@/api";
-import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
-import {Button} from "@/components/Button";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { Button } from "@/components/Button";
 
 const initialValuesSchema: ICard = {
   name: "",
@@ -15,8 +15,8 @@ const initialValuesSchema: ICard = {
 export default function Card() {
   const [initialValues, setInitialValues] = useState<ICard>(initialValuesSchema)
 
-  const {query, push} = useRouter()
-  const {id} = query
+  const { query, push } = useRouter()
+  const { id } = query
 
   const handleSubmit = async (values: ICard) => {
     const setValues = {
@@ -32,7 +32,7 @@ export default function Card() {
           setValues,
           headers: {
             'Content-Type': 'application/json',
-            'methods:' : 'PATCH'
+            'methods:': 'PATCH'
           }
         })
         console.log(result)
@@ -74,20 +74,20 @@ export default function Card() {
         initialValues={initialValues}
         onSubmit={handleSubmit} enableReinitialize={true}
       >
-        {({values, handleChange, handleSubmit}) => (
+        {({ values, handleChange, handleSubmit }) => (
           <Form className="flex p-5 w-full flex-col">
             <label htmlFor="name">Name</label>
-            <Field className="p-1 rounded-md bg-zinc-500" name="name" type="text"/>
+            <Field className="p-1 rounded-md bg-zinc-500" name="name" type="text" />
 
             <label className="mt-5" htmlFor="limit">Limit</label>
-            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="limit" type="text"/>
+            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="limit" type="text" />
 
             <label className="mt-5" htmlFor="used">Used</label>
-            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="used" type="text"/>
+            <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="used" type="text" />
 
             <label className="mt-5" htmlFor="type">Type</label>
             <Field placeholder={"R$"} className="p-1 rounded-md bg-zinc-500" name="type" type="text"
-                   as="select">
+              as="select">
               <option value="mastercard">MasterCard</option>
               <option value="visa">Visa</option>
             </Field>

@@ -7,6 +7,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { useTranslation, Trans } from 'next-i18next'
+import { AuthUser } from "@/components/authUser";
 
 export default function Home(
   _props: InferGetStaticPropsType<typeof getStaticProps>
@@ -22,7 +23,7 @@ export default function Home(
   return (
     <div className="pt-20">
       <Navbar />
-      <h1 className="text-4xl text-center text-zinc-300">{t('h1')}</h1>
+      <AuthUser />
       <Tab.Group>
         <div className="flex-wrap flex items-center justify-center">
           <Tab.List className="flex p-1 space-x-1 rounded-2xl">

@@ -1,8 +1,8 @@
-import {Field, Form, Formik} from "formik";
-import {IUser} from "@/interfaces/IUser";
-import {useState} from "react";
-import {Button} from "@/components/Button";
-import {useRouter} from "next/router";
+import { Field, Form, Formik } from "formik";
+import { IUser } from "@/interfaces/IUser";
+import { useState } from "react";
+import { Button } from "@/components/Button";
+import { useRouter } from "next/router";
 import api from "@/api";
 
 const initialValuesSchema: IUser = {
@@ -13,8 +13,8 @@ const initialValuesSchema: IUser = {
 export default function RegisterUser() {
   const [initialValues, setInitialValues] = useState(initialValuesSchema);
 
-  const {query, push} = useRouter()
-  const {id} = query
+  const { query, push } = useRouter()
+  const { id } = query
 
   const handleSubmit = async (values: IUser) => {
     try {
@@ -32,16 +32,16 @@ export default function RegisterUser() {
         initialValues={initialValues}
         onSubmit={handleSubmit} enableReinitialize={true}
       >
-        {({values, handleChange, handleSubmit}) => (
+        {({ values, handleChange, handleSubmit }) => (
           <Form className="flex p-5 w-full flex-col">
             <label htmlFor="name">Name</label>
-            <Field className="p-1 rounded-md bg-zinc-500" name="name" type="text"/>
+            <Field className="p-1 rounded-md bg-zinc-500" name="name" type="text" />
 
             <label className="mt-5" htmlFor="email">Email</label>
-            <Field className="p-1 rounded-md bg-zinc-500" name="email" type="text"/>
+            <Field className="p-1 rounded-md bg-zinc-500" name="email" type="text" />
 
             <label className="mt-5" htmlFor="password">Password</label>
-            <Field className="p-1 rounded-md bg-zinc-500" name="password" type="text"/>
+            <Field className="p-1 rounded-md bg-zinc-500" name="password" type="text" />
 
             <Button className="mt-5" type="submit">{values._id ? 'Edit' : 'Create'}</Button>
           </Form>

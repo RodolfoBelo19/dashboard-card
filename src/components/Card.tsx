@@ -3,8 +3,10 @@ import { ICard } from "../interfaces/ICard";
 import React from "react";
 import { PlusButton } from "@/components/Button";
 import Image from "next/image";
+import { useTranslation, Trans } from 'next-i18next'
 
 export const Card = ({ data }: any) => {
+  const { t } = useTranslation('common')
 
   const cardType = (type: string) => {
     if (type == 'mastercard') {
@@ -42,19 +44,19 @@ export const Card = ({ data }: any) => {
               >
                 <div className="m-4 w-full">
                   <p className="flex">
-                    <strong className="mx-2">name:</strong>
+                    <strong className="mx-2">{t('name')}:</strong>
                     {card?.name}
                   </p>
                   <p className={`flex ${card?.limit > 0 ? 'text-blue-400' : 'text-gray-400'} `}>
-                    <strong className="mx-2">total limit:</strong>
+                    <strong className="mx-2">{t('total_limit')}:</strong>
                     <FormatValue value={card?.limit} />
                   </p>
                   <p className={`flex ${card?.limit !== card?.used ? 'text-green-400' : 'text-red-400'} `}>
-                    <strong className="mx-2">available:</strong>
+                    <strong className="mx-2">{t('available_limit')}:</strong>
                     <FormatValue value={card?.limit - card?.used} />
                   </p>
                   <p className={`flex ${card?.limit !== card?.used ? 'text-yellow-400' : 'text-gray-400'} `}>
-                    <strong className="mx-2">used:</strong>
+                    <strong className="mx-2">{t('used')}:</strong>
                     <FormatValue value={card?.used} />
                   </p>
                 </div>

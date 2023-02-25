@@ -1,6 +1,6 @@
-import {Card} from "@/components/Card";
-import React, {useEffect, useState} from "react";
-import {ICard} from "@/interfaces/ICard";
+import { Card } from "@/components/Card";
+import React, { useEffect, useState } from "react";
+import { ICard } from "@/interfaces/ICard";
 import api from "@/api";
 
 export const ListCards = () => {
@@ -20,6 +20,6 @@ export const ListCards = () => {
   }, [])
 
   return (
-    <Card data={data}/>
+    <Card data={data} />
   );
 }

@@ -10,5 +10,10 @@
 
   "your_profile": "Your Profile",
   "settings": "Settings",
-  "sign_out": "Sign out"
+  "sign_out": "Sign out",
+
+  "name": "Name",
+  "total_limit": "Total limit",
+  "available_limit": "Available limit",
+  "used": "Used"
 }
