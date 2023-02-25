@@ -3,6 +3,11 @@ const Person = [
     id: 1,
     name: "John",
     age: 20,
+  },
+  {
+    id: 2,
+    name: "Doe",
+    age: 18,
   }
 ]
 

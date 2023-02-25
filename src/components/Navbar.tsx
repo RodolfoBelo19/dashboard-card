@@ -1,12 +1,14 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, BanknotesIcon } from '@heroicons/react/24/outline'
 
 import Link from "next/link";
 import Image from 'next/image';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next';
+import { AuthUser } from './authUser';
+import { IAuthUserFirebase } from '@/interfaces/IAuthUserFirebase';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -14,6 +16,7 @@ function classNames(...classes: any) {
 
 export default function Navbar() {
   const router = useRouter()
+  const [user, setUser] = useState<IAuthUserFirebase>({} as IAuthUserFirebase);
 
   const onToggleLanguageClick = (newLocale: string) => {
     const { pathname, asPath, query } = router
@@ -80,13 +83,15 @@ export default function Navbar() {
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
-                      <Image
-                        className="h-8 w-8 rounded-full"
-                        src="/avatar.jpeg"
-                        alt="avatar"
-                        width={32}
-                        height={32}
-                      />
+                      {user &&
+                        <Image
+                          className="h-8 w-8 rounded-full"
+                          src={user.photoURL || '/noImage.jpg'}
+                          alt="avatar"
+                          width={32}
+                          height={32}
+                        />
+                      }
                     </Menu.Button>
                   </div>
                   <Transition
@@ -141,6 +146,8 @@ export default function Navbar() {
                     <Image src="/us.webp" alt="usa" width={20} height={20} />
                   </button>
                 </div>
+
+                <AuthUser user={user} setUser={setUser} />
               </div>
             </div>
           </div>
@@ -161,7 +168,6 @@ export default function Navbar() {
                   {item.name}
                 </Disclosure.Button>
               ))}
-              {/* todo translation */}
               <div className='gap-4 flex items-center justify-center p-5'>
                 <button onClick={() => onToggleLanguageClick('pt')}>
                   <Image src="/br.webp" alt="brazil" width={30} height={30} />
@@ -170,7 +176,6 @@ export default function Navbar() {
                   <Image src="/us.webp" alt="usa" width={30} height={30} />
                 </button>
               </div>
-              {/* todo translation */}
             </div>
           </Disclosure.Panel>
         </>

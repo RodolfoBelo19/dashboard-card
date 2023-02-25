@@ -23,7 +23,6 @@ export default function Home(
   return (
     <div className="pt-20">
       <Navbar />
-      <AuthUser />
       <Tab.Group>
         <div className="flex-wrap flex items-center justify-center">
           <Tab.List className="flex p-1 space-x-1 rounded-2xl">
