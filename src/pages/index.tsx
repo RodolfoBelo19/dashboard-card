@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import {
   CreditCardIcon,
@@ -12,11 +12,14 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { useTranslation, Trans } from "next-i18next";
 import { AuthUser } from "@/components/authUser";
+import { IAuthUserFirebase } from "@/interfaces/IAuthUserFirebase";
 
 export default function Home(
   _props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
   const { t } = useTranslation("common");
+
+  const [user, setUser] = useState<IAuthUserFirebase>({} as IAuthUserFirebase);
 
   const redirect = [
     {
@@ -37,44 +40,58 @@ export default function Home(
   ];
 
   return (
-    <div className="pt-20">
-      <Navbar />
-      <Tab.Group>
-        <div className="flex-wrap flex items-center justify-center">
-          <Tab.List className="flex p-1 space-x-1 rounded-2xl">
-            {redirect.map((item) => {
-              return (
-                <>
-                  <Tab
-                    key={item.id}
-                    className={({ selected }) => `${
-                      selected ? "text-zinc-300" : "text-zinc-700"
-                    } 
+    <>
+      {user?.emailVerified ? (
+        <div className="pt-20">
+          <Navbar />
+          <Tab.Group>
+            <div className="flex-wrap flex items-center justify-center">
+              <Tab.List className="flex p-1 space-x-1 rounded-2xl">
+                {redirect.map((item) => {
+                  return (
+                    <>
+                      <Tab
+                        key={item.id}
+                        className={({ selected }) => `${
+                          selected ? "text-zinc-300" : "text-zinc-700"
+                        } 
                   w-32 p-5 m-2 outline-none rounded-2xl 
                   hover:text-zinc-300 hover:bg-zinc-900 hover:rounded-b-2xl 
                   transition duration-500`}
-                  >
-                    <div className="flex flex-col w-full items-center justify-center">
-                      {item.icon}
-                      {item.name}
-                    </div>
-                  </Tab>
-                </>
-              );
-            })}
-          </Tab.List>
+                      >
+                        <div className="flex flex-col w-full items-center justify-center">
+                          {item.icon}
+                          {item.name}
+                        </div>
+                      </Tab>
+                    </>
+                  );
+                })}
+              </Tab.List>
+            </div>
+            <Tab.Panels>
+              <Tab.Panel>
+                <ListCards />
+              </Tab.Panel>
+              <Tab.Panel>
+                <ListCards />
+              </Tab.Panel>
+              <Tab.Panel>revenues</Tab.Panel>
+            </Tab.Panels>
+          </Tab.Group>
         </div>
-        <Tab.Panels>
-          <Tab.Panel>
-            <ListCards />
-          </Tab.Panel>
-          <Tab.Panel>
-            <ListCards />
-          </Tab.Panel>
-          <Tab.Panel>revenues</Tab.Panel>
-        </Tab.Panels>
-      </Tab.Group>
-    </div>
+      ) : (
+        <>
+          <AuthUser
+            classNameProps={"w-full h-screen flex items-center text-white justify-center"}
+            user={user}
+            setUser={setUser}
+            sign_in={t("sign_in")}
+            sign_out={t("sign_out")}
+          />
+        </>
+      )}
+    </>
   );
 }
 

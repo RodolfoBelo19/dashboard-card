@@ -48,8 +48,8 @@ export const AuthUser = ({
 
   return (
     <div className={classNameProps}>
-      {!user && <button className="w-full text-left" onClick={signIn}>{sign_in}</button>}
-      {user && <button className="w-full text-left" onClick={signOutUser}>{sign_out}</button>}
+      {!user && <button className="w-full" onClick={signIn}>{sign_in}</button>}
+      {user && <button className="w-full" onClick={signOutUser}>{sign_out}</button>}
     </div>
   );
 };
