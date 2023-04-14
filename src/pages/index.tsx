@@ -11,15 +11,12 @@ import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { useTranslation, Trans } from "next-i18next";
-import { AuthUser } from "@/components/authUser";
-import { IAuthUserFirebase } from "@/interfaces/IAuthUserFirebase";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Home(
   _props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
   const { t } = useTranslation("common");
-
-  const [user, setUser] = useState<IAuthUserFirebase>({} as IAuthUserFirebase);
 
   const redirect = [
     {
@@ -39,9 +36,11 @@ export default function Home(
     },
   ];
 
+  const { user } = useAuth();
+
   return (
     <>
-      {user?.emailVerified ? (
+      {user?.emailVerified && (
         <div className="pt-20">
           <Navbar />
           <Tab.Group>
@@ -80,16 +79,6 @@ export default function Home(
             </Tab.Panels>
           </Tab.Group>
         </div>
-      ) : (
-        <>
-          <AuthUser
-            classNameProps={"w-full h-screen flex items-center text-white justify-center"}
-            user={user}
-            setUser={setUser}
-            sign_in={t("sign_in")}
-            sign_out={t("sign_out")}
-          />
-        </>
       )}
     </>
   );

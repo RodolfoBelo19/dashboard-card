@@ -1,18 +1,37 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useState } from "react";
+
+import { AuthUser } from "@/components/authUser";
+import { IAuthUserFirebase } from "@/interfaces/IAuthUserFirebase";
+
 import { useAuth } from "../../hooks/useAuth";
 
-const RequireAuth = ({ children }: any) => {
-  const router = useRouter();
+interface IRequireAuthProps {
+  children: React.ReactNode;
+}
+
+const RequireAuth = ({ children }: IRequireAuthProps) => {
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (!user) {
-      router.push("/login");
-    }
-  }, [router, user]);
+  const [userlocal, setUser] = useState<IAuthUserFirebase>(
+    {} as IAuthUserFirebase
+  );
 
-  return <>{user && children}</>;
+  return (
+    <>
+      {user ? (
+        children
+      ) : (
+        <AuthUser
+          classNameProps={
+            "w-full h-screen flex items-center text-white justify-center"
+          }
+          user={userlocal}
+          setUser={setUser}
+          sign_in={"login"}
+        />
+      )}
+    </>
+  );
 };
 
 export default RequireAuth;
